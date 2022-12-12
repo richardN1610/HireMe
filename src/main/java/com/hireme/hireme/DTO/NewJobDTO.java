@@ -1,4 +1,4 @@
-package com.hireme.hireme.DTO;
+package com.hireme.hireme.dto;
 
 import java.util.ArrayList;
 import java.util.Date;

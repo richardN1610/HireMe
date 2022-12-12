@@ -1,4 +1,4 @@
-package com.hireme.hireme.Exceptions;
+package com.hireme.hireme.exceptions;
 
 public class JobException extends Exception {
 

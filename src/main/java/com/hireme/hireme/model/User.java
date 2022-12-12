@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "active_user")
+@Table(name = "active_users")
 public class User {
 	@Id
 	@GeneratedValue

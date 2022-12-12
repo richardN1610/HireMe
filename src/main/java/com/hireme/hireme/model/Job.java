@@ -1,14 +1,12 @@
 package com.hireme.hireme.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.hireme.hireme.enums.Industries;
 import com.hireme.hireme.enums.JobTypes;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -31,5 +29,5 @@ public class Job {
 	private String jobTitle, jobDescription, jobSalary, jobBenefits, jobShift;
 	private ArrayList<JobTypes> jobTypes;
 	private Industries jobIndustry;
-	private Date postDate,jobExpiryDate;
+	private LocalDate postDate,jobExpiryDate;
 }

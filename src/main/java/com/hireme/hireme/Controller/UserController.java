@@ -1,4 +1,4 @@
-package com.hireme.hireme.Controller;
+package com.hireme.hireme.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -6,12 +6,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hireme.hireme.DTO.NewUserDTO;
-import com.hireme.hireme.Exceptions.UserException;
+import com.hireme.hireme.dto.NewUserDTO;
 import com.hireme.hireme.model.User;
 import com.hireme.hireme.service.UserService;
 
-import lombok.AllArgsConstructor;
+import com.hireme.hireme.exceptions.UserException;
 import lombok.NoArgsConstructor;
 
 

@@ -1,17 +1,18 @@
 package com.hireme.hireme.service;
 
 
+import com.hireme.hireme.mapper.UserMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.hireme.hireme.DTO.NewUserDTO;
-import com.hireme.hireme.DTO.UpdateUserDTO;
-import com.hireme.hireme.Exceptions.UserException;
+import com.hireme.hireme.dto.NewUserDTO;
+import com.hireme.hireme.dto.UpdateUserDTO;
 import com.hireme.hireme.model.User;
 import com.hireme.hireme.repository.UserRepository;
 
+import com.hireme.hireme.exceptions.UserException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 @NoArgsConstructor
@@ -21,6 +22,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private UserMapper userMapper;
 	
 	private BCryptPasswordEncoder passwordEncoder;
 	
@@ -30,11 +34,9 @@ public class UserService {
 		
 		userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));	
 		
-		User user = new User();
-		BeanUtils.copyProperties(userDTO, user);
-		
-		userRepository.save(user);
-		return user;
+		User user = userMapper.newUser(userDTO);
+
+		return userRepository.save(user);
 	}
 	
 	public void deleteUser(Long userId) throws UserException {
@@ -54,13 +56,9 @@ public class UserService {
 		if(userRepository.existsByMobile(updateUser.getMobile())) {
 			throw new UserException("Mobile number is already being used.");
 		}
-			
-		user.setPassword(passwordEncoder.encode(updateUser.getPassword()));	
-		user.setFirstName(updateUser.getFirstName());
-		user.setLastName(updateUser.getLastNameString());
-		user.setMobile(updateUser.getMobile());
-		user.setEmail(updateUser.getEmail());
 
-		return user;
+		userMapper.updateUserFromDto(updateUser,user);
+
+		return userRepository.save(user);
 	}
 }
